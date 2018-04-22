@@ -9,7 +9,10 @@ import android.text.Editable;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 public class Activitymain extends AppCompatActivity {
 
@@ -22,6 +25,12 @@ public class Activitymain extends AppCompatActivity {
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
+        initBackgroundImage();
+    }
+
+    private void initBackgroundImage(){
+        ImageView background = (ImageView) findViewById(R.id.iv_background);
+        Glide.with(this).load(R.drawable.background_app).into(background);
     }
 
 }

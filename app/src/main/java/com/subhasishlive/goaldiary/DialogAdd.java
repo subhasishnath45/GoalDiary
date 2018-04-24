@@ -23,15 +23,28 @@ public class DialogAdd extends DialogFragment {
     private Button mBtnAdd;
 
     public DialogAdd() {
-        
-    }
 
+    }
+    private View.OnClickListener mBtnListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            dismiss();
+        }
+    };
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //return super.onCreateView(inflater, container, savedInstanceState);
         return inflater.inflate(R.layout.dialog_add, null);
-
-
     }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mInputWhat = (EditText) view.findViewById(R.id.et_goal);
+        mBtnClose = (ImageButton) view.findViewById(R.id.btn_close);
+        mInputWhen = (DatePicker) view.findViewById(R.id.dpv_date);
+        mBtnAdd = (Button) view.findViewById(R.id.btn_add_it);
+
+        mBtnClose.setOnClickListener(mBtnListener);
+    }
 }

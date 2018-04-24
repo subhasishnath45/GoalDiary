@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">GoalDiary</string>
     <string name="str_add_goal">Add a Goal</string>
+    <string name="hint_et_goal">What is it?</string>
 </resources>

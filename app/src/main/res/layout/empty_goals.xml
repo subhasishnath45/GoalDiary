@@ -28,5 +28,6 @@
         android:fontFamily="sans-serif-thin"
         android:textColor="@color/btn_add_color"
         android:textSize="@dimen/btn_add_font_size"
+        android:onClick="showDialog"
         android:background="@drawable/bg_btn_add_it"/>
 </RelativeLayout>

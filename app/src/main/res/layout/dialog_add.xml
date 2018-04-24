@@ -27,10 +27,12 @@
         android:layout_below="@id/tv_title"
         android:id="@+id/et_goal"
         android:hint="@string/hint_et_goal"
+        android:maxLines="1"
+        android:inputType=""
         android:padding="16dp"/>
     <DatePicker
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="wrap_content"
         android:id="@+id/dpv_date"
         android:layout_below="@id/et_goal"></DatePicker>
     <Button

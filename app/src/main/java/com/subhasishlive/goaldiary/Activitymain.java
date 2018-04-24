@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -23,9 +24,17 @@ public class Activitymain extends AppCompatActivity {
     private View.OnClickListener mBtnAddListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Toast.makeText(Activitymain.this, "Button was clicked", Toast.LENGTH_SHORT).show();
+            LayoutInflater inflater = getLayoutInflater();
+            View alertLayout = inflater.inflate(R.layout.dialog_add, null);
+            showDialogAdd();
+            //Toast.makeText(Activitymain.this, "Button was clicked", Toast.LENGTH_SHORT).show();
         }
     };
+
+    private void showDialogAdd() {
+        DialogAdd dialog = new DialogAdd();
+        dialog.show(getSupportFragmentManager(),"Add");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

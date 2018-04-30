@@ -28,9 +28,23 @@ public class DialogAdd extends DialogFragment {
     private View.OnClickListener mBtnListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            dismiss();
+            int id = view.getId();
+            switch (id){
+                case R.id.btn_add_it:
+                    addAction();//udf is called...
+                    break;
+            }
+            dismiss(); // Dismiss the fragment and its dialog.
         }
     };
+
+    private void addAction() {
+
+        String what = mInputWhat.getText().toString();
+        long now = System.currentTimeMillis();
+
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //return super.onCreateView(inflater, container, savedInstanceState);

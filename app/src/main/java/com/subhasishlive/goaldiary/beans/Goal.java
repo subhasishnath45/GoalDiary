@@ -1,14 +1,31 @@
 package com.subhasishlive.goaldiary.beans;
 
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
 /**
  * Created by SubhasishNath on 4/30/2018.
  */
 
-public class Goal {
+public class Goal extends RealmObject {
     private String what;
+    @PrimaryKey
     private long added;
     private long when;
     private boolean completed;
+
+    // default constructor...
+    public Goal() {
+
+    }
+
+    // parameterized constructor...
+    public Goal(String what, long added, long when, boolean completed) {
+        this.what = what;
+        this.added = added;
+        this.when = when;
+        this.completed = completed;
+    }
 
     public String getWhat() {
         return what;

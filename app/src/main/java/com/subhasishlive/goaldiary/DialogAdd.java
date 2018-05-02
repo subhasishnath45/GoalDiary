@@ -11,6 +11,11 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import com.subhasishlive.goaldiary.beans.Goal;
+
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+
 /**
  * Created by SubhasishNath on 4/24/2018.
  */
@@ -37,12 +42,20 @@ public class DialogAdd extends DialogFragment {
             dismiss(); // Dismiss the fragment and its dialog.
         }
     };
-
+    // TODO process date
     private void addAction() {
 
         String what = mInputWhat.getText().toString();
         long now = System.currentTimeMillis();
-
+        RealmConfiguration realmConfig = new RealmConfiguration.Builder().build();
+        Realm.setDefaultConfiguration(realmConfig);
+        Realm realm = Realm.getDefaultInstance();// Returns the default configuration for getDefaultInstance().
+        Goal goal = new Goal(what,now,0,false);// creating new Goal object
+        // with parameterized constructor.
+        realm.copyToRealm(goal);// Copies a RealmObject to the Realm instance and returns the copy.
+        realm.commitTransaction();// When the event is received, the other Realms will update their
+        // objects and RealmResults to reflect the changes from this commit.
+        realm.close();// Closes the Realm instance and all its resources.
     }
 
     @Override

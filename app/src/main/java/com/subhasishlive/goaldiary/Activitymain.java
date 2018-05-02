@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.view.LayoutInflater;
@@ -21,6 +22,7 @@ public class Activitymain extends AppCompatActivity {
 
     Toolbar mToolbar;
     Button mBtnAdd;
+    RecyclerView mRecycler;// variable of type recyclerview...
     private View.OnClickListener mBtnAddListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -43,6 +45,8 @@ public class Activitymain extends AppCompatActivity {
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mBtnAdd = (Button) findViewById(R.id.btn_add);
+
+        mRecycler = (RecyclerView) findViewById(R.id.rv_goals);
         mBtnAdd.setOnClickListener(mBtnAddListener);
         setSupportActionBar(mToolbar);
         initBackgroundImage();

@@ -45,13 +45,17 @@ public class DialogAdd extends DialogFragment {
     // TODO process date
     private void addAction() {
 
+        // getting the input given in the edittext and convert the input to string...
         String what = mInputWhat.getText().toString();
-        long now = System.currentTimeMillis();
+        long now = System.currentTimeMillis();// current time in milliseconds
+        // creating configuration object...
         RealmConfiguration realmConfig = new RealmConfiguration.Builder().build();
+        // setting the configuration object as default configuration object...
         Realm.setDefaultConfiguration(realmConfig);
         Realm realm = Realm.getDefaultInstance();// Returns the default configuration for getDefaultInstance().
         Goal goal = new Goal(what,now,0,false);// creating new Goal object
         // with parameterized constructor.
+        realm.beginTransaction();
         realm.copyToRealm(goal);// Copies a RealmObject to the Realm instance and returns the copy.
         realm.commitTransaction();// When the event is received, the other Realms will update their
         // objects and RealmResults to reflect the changes from this commit.
@@ -73,5 +77,6 @@ public class DialogAdd extends DialogFragment {
         mBtnAdd = (Button) view.findViewById(R.id.btn_add_it);
 
         mBtnClose.setOnClickListener(mBtnListener);
+        mBtnAdd.setOnClickListener(mBtnListener);
     }
 }

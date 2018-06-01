@@ -1,4 +1,4 @@
-package com.subhasishlive.goaldiary;
+package com.subhasishlive.goalDiary;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,7 +11,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import com.subhasishlive.goaldiary.beans.Goal;
+import com.subhasishlive.goalDiary.beans.Goal;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;

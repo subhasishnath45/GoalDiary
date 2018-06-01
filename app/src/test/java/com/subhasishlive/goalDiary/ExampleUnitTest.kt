@@ -1,4 +1,4 @@
-package com.subhasishlive.goaldiary
+package com.subhasishlive.goalDiary
 
 import org.junit.Test
 

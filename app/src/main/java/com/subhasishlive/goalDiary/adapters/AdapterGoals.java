@@ -1,4 +1,4 @@
-package com.subhasishlive.goaldiary.adapters;
+package com.subhasishlive.goalDiary.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.subhasishlive.goaldiary.R;
+import com.subhasishlive.goalDiary.R;
 
 import java.util.ArrayList;
 

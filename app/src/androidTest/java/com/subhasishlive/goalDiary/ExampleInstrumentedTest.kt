@@ -1,4 +1,4 @@
-package com.subhasishlive.goaldiary
+package com.subhasishlive.goalDiary
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4

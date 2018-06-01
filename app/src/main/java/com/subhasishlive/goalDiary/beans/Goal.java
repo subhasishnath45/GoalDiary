@@ -1,4 +1,4 @@
-package com.subhasishlive.goaldiary.beans;
+package com.subhasishlive.goalDiary.beans;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;

@@ -3,10 +3,8 @@ package com.subhasishlive.goaldiary.adapters;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.subhasishlive.goaldiary.R;
 
@@ -18,10 +16,9 @@ import java.util.ArrayList;
 
 public class AdapterGoals extends RecyclerView.Adapter<AdapterGoals.GoalHolder>{
     private LayoutInflater mInflater;
-    private ArrayList<String> mItems;
+    private ArrayList<String> mItems = new ArrayList<>();
     public AdapterGoals(Context context){
         mInflater = LayoutInflater.from(context);
-        mItems = generateValues();
     }
     public static ArrayList<String> generateValues(){
         ArrayList<String> dummyValues = new ArrayList<>();
@@ -30,10 +27,17 @@ public class AdapterGoals extends RecyclerView.Adapter<AdapterGoals.GoalHolder>{
         }
         return dummyValues;
     }
+    // creating custom class
+    public static class GoalHolder extends RecyclerView.ViewHolder{
+        // parameterized constructor, that takes a View as argument...
+        public GoalHolder(View itemView) {
+            super(itemView);
+        }
+    }
 
     @Override
     public int getItemCount() {
-        return 100;
+        return 0;
     }
 
     // this method returns RecyclerView.ViewHolder
@@ -47,17 +51,6 @@ public class AdapterGoals extends RecyclerView.Adapter<AdapterGoals.GoalHolder>{
     // passed as parameter in onBindViewHolder() class...
     @Override
     public void onBindViewHolder(GoalHolder holder, int position) {
-        holder.mTextWhat.setText(mItems.get(position));
-    }
 
-    // creating custom class
-    public static class GoalHolder extends RecyclerView.ViewHolder{
-        // parameterized constructor, that takes a View as argument...
-        TextView mTextWhat;
-        public GoalHolder(View itemView) {
-            super(itemView);
-            mTextWhat = (TextView) itemView.findViewById(R.id.tv_what);
-        }
     }
-
 }

@@ -49,6 +49,7 @@ public class DialogAdd extends DialogFragment {
         String what = mInputWhat.getText().toString();
         long now = System.currentTimeMillis();// current time in milliseconds
         // creating configuration object...
+        Realm.init(this.getContext());
         RealmConfiguration realmConfig = new RealmConfiguration.Builder().build();
         // setting the configuration object as default configuration object...
         Realm.setDefaultConfiguration(realmConfig);

@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.subhasishlive.goaldiary.R;
 
@@ -29,9 +30,11 @@ public class AdapterGoals extends RecyclerView.Adapter<AdapterGoals.GoalHolder>{
     }
     // creating custom class
     public static class GoalHolder extends RecyclerView.ViewHolder{
+        TextView mTextWhat;
         // parameterized constructor, that takes a View as argument...
         public GoalHolder(View itemView) {
             super(itemView);
+            mTextWhat = (TextView) itemView.findViewById(R.id.tv_what);
         }
     }
 
@@ -51,6 +54,6 @@ public class AdapterGoals extends RecyclerView.Adapter<AdapterGoals.GoalHolder>{
     // passed as parameter in onBindViewHolder() class...
     @Override
     public void onBindViewHolder(GoalHolder holder, int position) {
-
+        holder.mTextWhat.setText(mItems.get(position));
     }
 }

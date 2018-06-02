@@ -2,6 +2,7 @@ package com.subhasishlive.goalDiary.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 public class AdapterGoals extends RecyclerView.Adapter<AdapterGoals.GoalHolder>{
     private LayoutInflater mInflater;
     private ArrayList<String> mItems = new ArrayList<>();
+    public static final String TAG = "VIVZ";
     public AdapterGoals(Context context){// Inside parameterized constructor,
         mInflater = LayoutInflater.from(context);
         mItems = generateValues();
@@ -42,6 +44,7 @@ public class AdapterGoals extends RecyclerView.Adapter<AdapterGoals.GoalHolder>{
     public GoalHolder onCreateViewHolder(ViewGroup parent, int viewType) {
        View view = mInflater.inflate(R.layout.row_goals,parent,false);
         GoalHolder holder = new GoalHolder(view);
+        Log.d(TAG, "onCreateViewHolder: ");
         return holder;
     }
     // the returned RecyclerView.ViewHolder from onCreateViewHolder() method is
@@ -49,6 +52,7 @@ public class AdapterGoals extends RecyclerView.Adapter<AdapterGoals.GoalHolder>{
     @Override
     public void onBindViewHolder(GoalHolder holder, int position) {
         holder.mTextWhat.setText(mItems.get(position));
+        Log.d(TAG, "onBindViewHolder: "+ position);
     }
 
 

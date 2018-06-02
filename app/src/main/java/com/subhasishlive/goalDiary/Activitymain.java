@@ -44,6 +44,11 @@ public class Activitymain extends AppCompatActivity {
         // setting up layout manager for mRecycler RecyclerView....
         LinearLayoutManager manager = new LinearLayoutManager(this);
         mRecycler.setLayoutManager(manager);
+        // now I have set adapter on recycler view...
+        // by calling setAdapter method.
+        // passing new instance of my adapter class as argument.
+        // and while instanciating the adapter class, passing this present context
+        // as argument....
         mRecycler.setAdapter(new AdapterGoals(this));
         mBtnAdd.setOnClickListener(mBtnAddListener);
         setSupportActionBar(mToolbar);

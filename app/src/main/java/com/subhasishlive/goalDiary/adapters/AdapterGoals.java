@@ -18,8 +18,10 @@ import java.util.ArrayList;
 public class AdapterGoals extends RecyclerView.Adapter<AdapterGoals.GoalHolder>{
     private LayoutInflater mInflater;
     private ArrayList<String> mItems = new ArrayList<>();
-    public AdapterGoals(Context context){
+    public AdapterGoals(Context context){// Inside parameterized constructor,
         mInflater = LayoutInflater.from(context);
+        mItems = generateValues();
+        // created a context object and assigned to mInflater
     }
     public static ArrayList<String> generateValues(){
         ArrayList<String> dummyValues = new ArrayList<>();
@@ -28,19 +30,11 @@ public class AdapterGoals extends RecyclerView.Adapter<AdapterGoals.GoalHolder>{
         }
         return dummyValues;
     }
-    // creating custom class
-    public static class GoalHolder extends RecyclerView.ViewHolder{
-        TextView mTextWhat;
-        // parameterized constructor, that takes a View as argument...
-        public GoalHolder(View itemView) {
-            super(itemView);
-            mTextWhat = (TextView) itemView.findViewById(R.id.tv_what);
-        }
-    }
+
 
     @Override
     public int getItemCount() {
-        return 0;
+        return 100;
     }
 
     // this method returns RecyclerView.ViewHolder
@@ -56,4 +50,18 @@ public class AdapterGoals extends RecyclerView.Adapter<AdapterGoals.GoalHolder>{
     public void onBindViewHolder(GoalHolder holder, int position) {
         holder.mTextWhat.setText(mItems.get(position));
     }
+
+
+    // creating custom class
+    public static class GoalHolder extends RecyclerView.ViewHolder{
+        TextView mTextWhat;
+        // parameterized constructor, that takes a View as argument...
+        public GoalHolder(View itemView) {
+            super(itemView);
+            mTextWhat = (TextView) itemView.findViewById(R.id.tv_what);
+        }
+    }
+
+
+
 }

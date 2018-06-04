@@ -9,8 +9,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.subhasishlive.goalDiary.R;
+import com.subhasishlive.goalDiary.beans.Goal;
 
 import java.util.ArrayList;
+
+import io.realm.RealmResults;
 
 /**
  * Created by SubhasishNath on 5/3/2018.
@@ -18,11 +21,13 @@ import java.util.ArrayList;
 
 public class AdapterGoals extends RecyclerView.Adapter<AdapterGoals.GoalHolder>{
     private LayoutInflater mInflater;
-    private ArrayList<String> mItems = new ArrayList<>();
+    // creating RealmResult array type instance variable,
+    // that can hold Goal type RealmObjects...
+    private RealmResults<Goal> mReasults;
     public static final String TAG = "VIVZ";
-    public AdapterGoals(Context context){// Inside parameterized constructor,
+    public AdapterGoals(Context context,RealmResults<Goal> results){// Inside parameterized constructor,
         mInflater = LayoutInflater.from(context);
-        mItems = generateValues();
+        mReasults = results;
         // created a context object and assigned to mInflater
     }
     public static ArrayList<String> generateValues(){
@@ -36,7 +41,7 @@ public class AdapterGoals extends RecyclerView.Adapter<AdapterGoals.GoalHolder>{
 
     @Override
     public int getItemCount() {
-        return 100;
+        return mReasults.size();
     }
 
     // this method returns RecyclerView.ViewHolder
@@ -51,8 +56,14 @@ public class AdapterGoals extends RecyclerView.Adapter<AdapterGoals.GoalHolder>{
     // passed as parameter in onBindViewHolder() class...
     @Override
     public void onBindViewHolder(GoalHolder holder, int position) {
-        holder.mTextWhat.setText(mItems.get(position));
+        Goal goal = mReasults.get(position);
+        holder.mTextWhat.setText(goal.getWhat());
         Log.d(TAG, "onBindViewHolder: "+ position);
+    }
+    // created the public method update,which takes a RealmResults type array...
+    public void update(RealmResults<Goal> results) {
+        mReasults = results;
+        notifyDataSetChanged();
     }
 
 

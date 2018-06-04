@@ -7,6 +7,7 @@ import io.realm.annotations.PrimaryKey;
  * Created by SubhasishNath on 4/30/2018.
  */
 // converted my class to realm database...
+// Define your model class by extending RealmObject
 public class Goal extends RealmObject {
     private String what;
     @PrimaryKey

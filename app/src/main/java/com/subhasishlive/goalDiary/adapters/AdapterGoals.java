@@ -24,20 +24,12 @@ public class AdapterGoals extends RecyclerView.Adapter<AdapterGoals.GoalHolder>{
     // creating RealmResult array type instance variable,
     // that can hold Goal type RealmObjects...
     private RealmResults<Goal> mReasults;
-    public static final String TAG = "VIVZ";
+    public static final String TAG = "SUBHASISH";
     public AdapterGoals(Context context,RealmResults<Goal> results){// Inside parameterized constructor,
         mInflater = LayoutInflater.from(context);
-        mReasults = results;
-        // created a context object and assigned to mInflater
+        //mReasults = results;
+        update(results);
     }
-    public static ArrayList<String> generateValues(){
-        ArrayList<String> dummyValues = new ArrayList<>();
-        for (int i=1;i<101;i++){
-            dummyValues.add("ITEM NO"+i);
-        }
-        return dummyValues;
-    }
-
 
     @Override
     public int getItemCount() {
@@ -63,7 +55,8 @@ public class AdapterGoals extends RecyclerView.Adapter<AdapterGoals.GoalHolder>{
     // created the public method update,which takes a RealmResults type array...
     public void update(RealmResults<Goal> results) {
         mReasults = results;
-        notifyDataSetChanged();
+        // TODO not updating the list after adding new goal...from video (067 show data inside adapter...)
+        this.notifyDataSetChanged();
     }
 
 

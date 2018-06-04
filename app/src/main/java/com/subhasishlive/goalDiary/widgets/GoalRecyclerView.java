@@ -57,4 +57,13 @@ public class GoalRecyclerView extends RecyclerView {
     public GoalRecyclerView(Context context, @Nullable AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
+
+    @Override
+    public void setAdapter(Adapter adapter) {
+        super.setAdapter(adapter);
+        if(adapter != null){
+            adapter.registerAdapterDataObserver(mObserver);
+        }
+        mObserver.onChanged();
+    }
 }

@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.subhasishlive.goalDiary.adapters.AdapterGoals;
 import com.subhasishlive.goalDiary.beans.Goal;
+import com.subhasishlive.goalDiary.widgets.GoalRecyclerView;
 
 import io.realm.Realm;
 import io.realm.RealmChangeListener;
@@ -24,7 +25,7 @@ public class Activitymain extends AppCompatActivity {
     private static final String TAG = "Subhasish" ;
     Toolbar mToolbar;
     Button mBtnAdd;
-    RecyclerView mRecycler;// variable of type recyclerview...
+    GoalRecyclerView mRecycler;// variable of type recyclerview...
     Realm mRealm;
     RealmResults<Goal> mResults;
     AdapterGoals mAdapter;
@@ -63,7 +64,7 @@ public class Activitymain extends AppCompatActivity {
         RealmResults<Goal> results = mRealm.where(Goal.class).findAllAsync();
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mBtnAdd = (Button) findViewById(R.id.btn_add);
-        mRecycler = (RecyclerView) findViewById(R.id.rv_goals);
+        mRecycler = (GoalRecyclerView) findViewById(R.id.rv_goals);
         // setting up layout manager for mRecycler RecyclerView....
         LinearLayoutManager manager = new LinearLayoutManager(this);
         mRecycler.setLayoutManager(manager);

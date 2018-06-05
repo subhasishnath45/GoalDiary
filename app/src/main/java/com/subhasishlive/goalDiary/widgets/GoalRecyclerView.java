@@ -61,7 +61,8 @@ public class GoalRecyclerView extends RecyclerView {
     @Override
     public void setAdapter(Adapter adapter) {
         super.setAdapter(adapter);
-        if(adapter != null){
+        if(adapter != null){ // If adapter is not null,
+            // Register a new observer to listen for data changes
             adapter.registerAdapterDataObserver(mObserver);
         }
         mObserver.onChanged();

@@ -3,14 +3,23 @@ package com.subhasishlive.goalDiary.widgets;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
+import android.view.View;
+
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by SubhasishNath on 6/4/2018.
  */
 
 public class GoalRecyclerView extends RecyclerView {
-
+    // mNonEmptyViews will be displayed, when the adapter is non-empty
+    // Collections.emptyList() uses type-inference and therefore returns List<T>
+    private List<View> mNonEmptyViews = Collections.emptyList();
+    // mEmptyViews will be displayed, when the adapter is empty
+    private List<View> mEmptyViews;
     // creting an instance of adapter data observer.
     private AdapterDataObserver mObserver = new AdapterDataObserver() {
         @Override
@@ -66,5 +75,13 @@ public class GoalRecyclerView extends RecyclerView {
             adapter.registerAdapterDataObserver(mObserver);
         }
         mObserver.onChanged();
+    }
+
+    public void hideIfEmpty(View ...views) {
+
+    }
+
+    public void showIfEmpty(View ...mEmptyView) {
+
     }
 }

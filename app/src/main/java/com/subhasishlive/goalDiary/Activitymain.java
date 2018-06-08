@@ -3,7 +3,6 @@ package com.subhasishlive.goalDiary;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -28,6 +27,8 @@ public class Activitymain extends AppCompatActivity {
     GoalRecyclerView mRecycler;// variable of type recyclerview...
     Realm mRealm;
     RealmResults<Goal> mResults;
+    // creating a view instance variable...
+    View mEmptyView;
     AdapterGoals mAdapter;
     private View.OnClickListener mBtnAddListener = new View.OnClickListener() {
         @Override
@@ -63,8 +64,11 @@ public class Activitymain extends AppCompatActivity {
          */
         RealmResults<Goal> results = mRealm.where(Goal.class).findAllAsync();
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mEmptyView = (View) findViewById(R.id.empty_goals);
         mBtnAdd = (Button) findViewById(R.id.btn_add);
         mRecycler = (GoalRecyclerView) findViewById(R.id.rv_goals);
+        mRecycler.hideIfEmpty(mToolbar);
+        mRecycler.showIfEmpty(mEmptyView);
         // setting up layout manager for mRecycler RecyclerView....
         LinearLayoutManager manager = new LinearLayoutManager(this);
         mRecycler.setLayoutManager(manager);
@@ -73,7 +77,8 @@ public class Activitymain extends AppCompatActivity {
         // passing new instance of my adapter class as argument.
         // and while instanciating the adapter class, passing this present context
         // as argument....
-        mRecycler.setAdapter(new AdapterGoals(this,results));
+        mAdapter = new AdapterGoals(this, mResults);
+        mRecycler.setAdapter(mAdapter);
         mBtnAdd.setOnClickListener(mBtnAddListener);
         setSupportActionBar(mToolbar);
         initBackgroundImage();

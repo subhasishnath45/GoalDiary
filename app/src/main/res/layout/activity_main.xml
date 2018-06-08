@@ -19,6 +19,7 @@
         android:layout_height="match_parent"
         android:id="@+id/rv_goals"
         android:layout_below="@id/toolbar"/>
-    <include layout="@layout/empty_goals" />
+    <include layout="@layout/empty_goals"
+        android:id="@+id/empty_goals"/>
 </RelativeLayout>
 

@@ -4,9 +4,11 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchUIUtil;
 import android.util.AttributeSet;
 import android.view.View;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -15,43 +17,59 @@ import java.util.List;
  */
 
 public class GoalRecyclerView extends RecyclerView {
-    // mNonEmptyViews will be displayed, when the adapter is non-empty
+
     // Collections.emptyList() uses type-inference and therefore returns List<T>
+    // Returns the empty list (immutable).immutable means fixed
+    // we initialize List<View> to Collections.emptyList(); because otherwise it will
+    // give me a null Pointer exception....
+    // mNonEmptyViews will be displayed, when the adapter is non-empty
     private List<View> mNonEmptyViews = Collections.emptyList();
     // mEmptyViews will be displayed, when the adapter is empty
-    private List<View> mEmptyViews;
+    private List<View> mEmptyViews = Collections.emptyList();
     // creting an instance of adapter data observer.
     private AdapterDataObserver mObserver = new AdapterDataObserver() {
         @Override
         public void onChanged() {
-
+            toggleViews();
         }
 
         @Override
         public void onItemRangeChanged(int positionStart, int itemCount) {
-
+            toggleViews();
         }
 
         @Override
         public void onItemRangeChanged(int positionStart, int itemCount, Object payload) {
-
+            toggleViews();
         }
 
         @Override
         public void onItemRangeInserted(int positionStart, int itemCount) {
-
+            toggleViews();
         }
 
         @Override
         public void onItemRangeRemoved(int positionStart, int itemCount) {
-
+            toggleViews();
         }
 
         @Override
         public void onItemRangeMoved(int fromPosition, int toPosition, int itemCount) {
-
+            toggleViews();
         }
     };
+
+    private void toggleViews() {
+        // So we are checking for these 3 things in this if statement:
+        // 1) a person must set an adapter...
+        // 2) mEmptyViews must not bt empty...
+        // 3) mNonEmptyViews must not bt empty...
+        if(getAdapter() != null && !mEmptyViews.isEmpty() && !mNonEmptyViews.isEmpty()){
+            if(getAdapter().getItemCount() == 0){
+
+            }
+        }
+    }
 
     // this constructor is used to initialize recyclerview from code.
     public GoalRecyclerView(Context context) {
@@ -76,12 +94,12 @@ public class GoalRecyclerView extends RecyclerView {
         }
         mObserver.onChanged();
     }
-
-    public void hideIfEmpty(View ...views) {
-
+    // to hide something, if empty
+    public void hideIfEmpty(View... views) {
+        mNonEmptyViews = Arrays.asList(views);
     }
 
-    public void showIfEmpty(View ...mEmptyView) {
-
+    public void showIfEmpty(View... emptyViews) {
+        mEmptyViews = Arrays.asList(emptyViews);
     }
 }

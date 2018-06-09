@@ -8,6 +8,8 @@ import android.support.v7.widget.helper.ItemTouchUIUtil;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.subhasishlive.goalDiary.extras.Util;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -65,8 +67,20 @@ public class GoalRecyclerView extends RecyclerView {
         // 2) mEmptyViews must not bt empty...
         // 3) mNonEmptyViews must not bt empty...
         if(getAdapter() != null && !mEmptyViews.isEmpty() && !mNonEmptyViews.isEmpty()){
-            if(getAdapter().getItemCount() == 0){
-
+            if(getAdapter().getItemCount() == 0){// if no items
+                // show all the empty views.
+                Util.showViews(mEmptyViews);
+                // hide the recycler view.
+                setVisibility(View.GONE);
+                //hide all the views which are meant to be hidden
+                Util.hideViews(mNonEmptyViews);
+            }else{
+                // show all the non empty views.
+                Util.showViews(mNonEmptyViews);
+                // show the recycler view.
+                setVisibility(View.VISIBLE);
+                // hide all the empty views.
+                Util.hideViews(mEmptyViews);
             }
         }
     }

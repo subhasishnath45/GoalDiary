@@ -13,6 +13,7 @@ import com.subhasishlive.goalDiary.beans.Goal;
 
 import java.util.ArrayList;
 
+import io.realm.Realm;
 import io.realm.RealmResults;
 
 /**
@@ -30,12 +31,12 @@ public class AdapterGoals extends RecyclerView.Adapter<AdapterGoals.GoalHolder>{
         //mReasults = results;
         update(results);
     }
-
-    @Override
-    public int getItemCount() {
-        return mReasults.size();
+    // created the public method update,which takes a RealmResults type array...
+    public void update(RealmResults<Goal> results) {
+        mReasults = results;
+        // TODO not updating the list after adding new goal...from video (067 show data inside adapter...)
+        this.notifyDataSetChanged();
     }
-
     // this method returns RecyclerView.ViewHolder
     @Override
     public GoalHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -52,14 +53,15 @@ public class AdapterGoals extends RecyclerView.Adapter<AdapterGoals.GoalHolder>{
         holder.mTextWhat.setText(goal.getWhat());
         Log.d(TAG, "onBindViewHolder: "+ position);
     }
-    // created the public method update,which takes a RealmResults type array...
-    public void update(RealmResults<Goal> results) {
-        mReasults = results;
-        // TODO not updating the list after adding new goal...from video (067 show data inside adapter...)
-        this.notifyDataSetChanged();
+
+
+    @Override
+    public int getItemCount() {
+        Realm mRealm;
+        mRealm = Realm.getDefaultInstance();
+        RealmResults<Goal> mReasults = mRealm.where(Goal.class).findAllAsync();
+        return mReasults.size();
     }
-
-
     // creating custom class
     public static class GoalHolder extends RecyclerView.ViewHolder{
         TextView mTextWhat;
